@@ -1,5 +1,14 @@
-{% extends "@FOSUser/layout.html.twig" %}
-
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "::layout.html.twig" %}
+{% block login %}
 {% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
+
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+    <div>
+        <input  class="btn btn-warning" type="submit" value="{{ 'registration.submit'|trans }}" />
+        <a class="btn btn-default"href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    </div>
+    {{ form_end(form) }}
 {% endblock fos_user_content %}
+{% endblock %}

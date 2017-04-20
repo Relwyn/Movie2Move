@@ -1,0 +1,15 @@
+{% extends "::layout.html.twig" %}
+
+{% block login %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a class="btn btn-warning" href="{{ path('fos_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    {% else %}
+        <a class="btn btn-warning"  href="/login" role="button">Se connecter</a>
+        <a class="btn btn-warning"  href="/register" role="button">S'enregister</a>
+    {% endif %}
+    {% block fos_user_content %}
+    {% endblock %}
+{% endblock %}

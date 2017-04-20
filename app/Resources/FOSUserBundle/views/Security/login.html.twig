@@ -1,6 +1,6 @@
-{% extends "::layout.html.twig" %}
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% extends "::layout.html.twig" %}
 {% block login %}
     {% block fos_user_content %}
         {% if error %}
@@ -11,18 +11,18 @@
             {% if csrf_token %}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
             {% endif %}
-
             <label for="username">{{ 'security.login.username'|trans }}</label>
-            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            <input class ="form-control"type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
 
             <label for="password">{{ 'security.login.password'|trans }}</label>
-            <input class="form-control" type="password" id="password" name="_password" required="required" /><br>
+            <input class ="form-control" type="password" id="password" name="_password" required="required" /><br>
 
             <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
             <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label><br>
 
-            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-            <a class="btn btn-default" href="/">inscrivez vous</a>
+            <input class="btn btn-warning" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            <a class="btn btn-default"  href="/register" role="button">S'enregister</a>
         </form>
-    {% endblock %}
+
+    {% endblock fos_user_content %}
 {% endblock %}

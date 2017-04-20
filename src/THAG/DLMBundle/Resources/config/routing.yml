@@ -1,7 +1,0 @@
-thagdlm_homepage:
-    path:     /
-    defaults: { _controller: THAGDLMBundle:Default:index }
-
-dlm_jeu:
-  path: /jeu
-  defaults: { _controller: THAGDLMBundle:Default:jeu }

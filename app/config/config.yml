@@ -53,7 +53,7 @@ doctrine:
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: '%kernel.root_dir%/data/data.db3'
-        #   2. Uncomment database_path in parameters.yml.dist
+        #   2. Uncomment database_path in parameters.yml
         #   3. Uncomment next line:
         #path: '%database_path%'
 
@@ -73,7 +73,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
-    user_class: THAG\DLMBundle\Entity\User
+    user_class: THAG\M2MBundle\Entity\User
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"

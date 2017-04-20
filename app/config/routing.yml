@@ -1,5 +1,5 @@
-thagdlm:
-    resource: "@THAGDLMBundle/Resources/config/routing.yml"
+thagm2m:
+    resource: "@THAGM2MBundle/Resources/config/routing.yml"
     prefix:   /
 
 hwi_oauth_redirect:
