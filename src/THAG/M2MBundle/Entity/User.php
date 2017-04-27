@@ -28,6 +28,7 @@ class User extends BaseUser
      */
     protected $googleID;
 
+
     public function __construct()
     {
         parent::__construct();
@@ -81,4 +82,6 @@ class User extends BaseUser
     {
         return $this->googleID;
     }
+
+
 }

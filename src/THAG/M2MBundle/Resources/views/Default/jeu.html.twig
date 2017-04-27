@@ -1,11 +1,64 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Jeu - Dessine la Mode</title>
-</head>
-<body>
-<h1>test</h1>
-<p>Ici le jeu</p>
-</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+<html lang="fr">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <title>Demo fsortable</title>
+        <link rel="stylesheet" href="{{ asset('bundles/thagm2m/jquery-fsortable/demo/demo.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/thagm2m/assets/bootstrap/css/bootstrap.min.css') }}">
+    </head>
+
+    <body>
+    <div class="limitation">
+        <div class="fs border row">
+            <div class="" ></div>
+            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image1.jpg') }}" alt="Image 1" title="Image 1" />
+            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image2.jpg') }}" alt="Image 1" title="Image 2" />
+            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image3.jpg') }}" alt="Image 1" title="Image 3" />
+            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image4.jpg') }}" alt="Image 1" title="Image 4" />
+            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image5.jpg') }}" alt="Image 1" title="Image 5" />
+        </div>
+    </div>
+
+
+
+    </body>
+    <script src="{{ asset('bundles/thagm2m/assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/thagm2m/jquery-fsortable/resources/jquery-1.10.2.min.js') }}"></script>
+    <script src="{{ asset('bundles/thagm2m/jquery-fsortable/resources/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('bundles/thagm2m/jquery-fsortable/src/jquery-fsortable.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".fs").fsortable({
+                connectWith: ".fs",
+                tolerance: "pointer",
+                size: 5,
+                update: function()
+                {
+                    var data_to_send = $('.fs').fsortable("serialize");
+                    $.ajax
+                    ({
+                        type: "GET",
+                        dataType: "JSON",
+                        url: "jeu.html.twig",
+                        data: data_to_send
+                    });
+                }
+            }).disableSelection();
+
+            $("#content .item").draggable({
+                connectToSortable: ".fs:not(.full)",
+                revert: "invalid",
+                helper: "clone",
+                containment : '.limitation'
+            });
+        });
+
+
+    </script>
 </html>
+

@@ -4,4 +4,4 @@ thagm2m_homepage:
 
 m2m_jeu:
   path: /jeu
-  defaults: { _controller: THAGM2MBundle:Default:jeu }
+  defaults: { _controller: THAGM2MBundle:Default:play }

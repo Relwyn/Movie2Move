@@ -14,7 +14,8 @@
 
     <!-- inclusion du style CSS de base -->
 
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/thagm2m/assets/jquery-ui-1.12.1.custom/jquery-ui.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/thagm2m/assets/jquery-ui-1.12.1.custom/jquery-ui.theme.css') }}">
     <!-- CSS -->
 
 
@@ -653,12 +654,68 @@
 {#</div>#}
 
 
+{#<div id="ui-id-5" class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content ui-accordion-content-active">#}
+
+    {#<img class="drag col-md-2 "width="200" height="140"  src="{{ asset('bundles/thagm2m/img/image1.jpg') }}" alt="Image 1" title="Image 11" />#}
+
+    {#<img class="drag col-md-2" width="200" height="140"  src="{{ asset('bundles/thagm2m/img/image2.jpg') }}" alt="Image 1" title="Image 11" />#}
+
+    {#<img class="drag col-md-2" width="200" height="140"  src="{{ asset('bundles/thagm2m/img/image3.jpg') }}" alt="Image 1" title="Image 11" />#}
+
+    {#<img class="drag col-md-2" width="200" height="140"  src="{{ asset('bundles/thagm2m/img/image4.jpg') }}" alt="Image 1" title="Image 11" />#}
+
+    {#<img class="drag col-md-2" width="200" height="140"  src="{{ asset('bundles/thagm2m/img/image5.jpg') }}" alt="Image 1" title="Image 11" />#}
+
+{#</div>#}
+
+
+
+
+{#<div id="drop">#}
+
+
+{#</div>#}
 
 
 
 <!-- inclusion des libraries jQuery et jQuery UI (fichier principal et plugins) -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+
+
+{#<script type="text/javascript">#}
+
+    {#$('.drag1').draggable({#}
+        {#axis : 'x'    // le bloc ayant pour classe la valeur "drag1" ne pourra être déplacé qu'au niveau horizontal#}
+    {#});#}
+
+    {#$('.drag2').draggable({#}
+        {#axis : 'y'    // le bloc ayant pour classe la valeur "drag2" ne pourra être déplacé qu'au niveau vertical#}
+    {#});#}
+
+    {#$('.drag').draggable({#}
+        {#cusor : 'move',#}
+        {#containment: '#limitation',#}
+        {#snap: '.ui-droppable', // chaque élément ayant la classe "draggable" exercera une attraction#}
+        {#revert : 'invalid' // sera renvoyé à sa place s'il n'est pas déposé dans #drop#}
+    {#});#}
+
+    {#$('#valid').draggable({#}
+        {#revert : 'valid' // sera renvoyé à sa place s'il est déposé dans #drop#}
+    {#});#}
+
+    {#$('#invalid').draggable({#}
+
+        {#containment : '#limitation' //ne pourra pas sortir du block contenant limitation comme id#}
+    {#});#}
+
+    {#$('#drop').droppable({#}
+        {#drop : function(){#}
+            {#alert('Action terminée !');#}
+        {#}#}
+    {#});#}
+
+{#</script>#}
 <!-- Javascript -->
 <script src="{{ asset('bundles/thagm2m/assets/js/jquery-1.11.1.min.js') }}"></script>
 <script src="{{ asset('bundles/thagm2m/assets/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -672,5 +729,4 @@
 <![endif]-->
 
 </body>
-
-
+</html>
