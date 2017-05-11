@@ -37,7 +37,7 @@ class Film
     private $genres;
 
     /**
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="integer")
      */
     private $date;
 
@@ -168,10 +168,11 @@ class Film
         return $this->genres;
     }
 
+
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param integer $date
      *
      * @return Film
      */
@@ -185,7 +186,7 @@ class Film
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return integer
      */
     public function getDate()
     {

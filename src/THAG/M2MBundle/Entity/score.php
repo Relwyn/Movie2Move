@@ -38,7 +38,9 @@ class score
     /**
      * @ORM\Column(type="integer", nullable=false)
      */
-    protected $score=0;
+    protected $score=-1;
+
+    //peux etre creer un second score fictif juste pour améliorer le premier
     /**
      * Constructor
      */

@@ -22,7 +22,7 @@ class Film_trad
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="THAG\M2MBundle\Entity\Film")
+     * @ORM\ManyToOne(targetEntity="THAG\M2MBundle\Entity\Film", cascade={"persist"},inversedBy="id_film_trad")
      * @ORM\JoinColumn(nullable=false)
      */
     private  $film;
@@ -39,7 +39,7 @@ class Film_trad
     private $titre_trad;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=false, length=10000)
      */
     private $synopsis_trad;
 
@@ -106,30 +106,6 @@ class Film_trad
 
 
     /**
-     * Set film
-     *
-     * @param \THAG\M2MBundle\Entity\Film $film
-     *
-     * @return Film_trad
-     */
-    public function setFilm(\THAG\M2MBundle\Entity\Film $film)
-    {
-        $this->film = $film;
-
-        return $this;
-    }
-
-    /**
-     * Get film
-     *
-     * @return \THAG\M2MBundle\Entity\Film
-     */
-    public function getFilm()
-    {
-        return $this->film;
-    }
-
-    /**
      * Set langue
      *
      * @param \THAG\M2MBundle\Entity\Langue $langue
@@ -151,5 +127,28 @@ class Film_trad
     public function getLangue()
     {
         return $this->langue;
+    }
+
+    /**
+     * Set film
+     *
+     * @param \THAG\M2MBundle\Entity\Film $film
+     *
+     * @return Film_trad
+     */
+    public function setFilm(\THAG\M2MBundle\Entity\Film $film)
+    {
+        $this->film = $film;
+        return $this;
+    }
+
+    /**
+     * Get film
+     *
+     * @return \THAG\M2MBundle\Entity\Film
+     */
+    public function getFilm()
+    {
+        return $this->film;
     }
 }

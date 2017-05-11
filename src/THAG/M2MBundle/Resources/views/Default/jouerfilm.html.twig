@@ -1,0 +1,117 @@
+
+<html lang="fr">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<head>
+    <title>Movie2Move</title>
+    <link rel="stylesheet" href="{{ asset('bundles/thagm2m/jquery-fsortable/demo/demo.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/thagm2m/assets/bootstrap/css/bootstrap.min.css') }}">
+</head>
+
+<body>
+
+    <p>ALLEZ BONNE CHANCE '-'</p>
+
+       <div class="border row" id="fs">
+        <img class="item .img-responsive column" id="1" src="{{ asset('bundles/thagm2m/img/image1.jpg') }}" alt="Image 1"
+             title="Image 1"/>
+        <img class="item .img-responsive column" id="2" src="{{ asset('bundles/thagm2m/img/image2.jpg') }}" alt="Image 1"
+             title="Image 2"/>
+        <img class="item .img-responsive column" id="3" src="{{ asset('bundles/thagm2m/img/image3.jpg') }}" alt="Image 1"
+             title="Image 3"/>
+        <img class="item .img-responsive column" id="4" src="{{ asset('bundles/thagm2m/img/image4.jpg') }}" alt="Image 1"
+             title="Image 4"/>
+        <img class="item .img-responsive column" id="5" src="{{ asset('bundles/thagm2m/img/image5.jpg') }}" alt="Image 1"
+             title="Image 5"/>
+       </div>
+
+    <input class="btn btn-warning" type="submit" id="_valider" name="_valider" value="C'est mon dernier mot Jean Pierre"/>
+
+
+    <div id="movie">
+
+    </div>
+</body>
+
+<script>
+
+    //----------------------------------------------------A MODIFIER-----------------------------------------------------------
+    //obtenir le score
+        $("#fs").sortable({
+            //placeholder: 'fond', permet de visualiser l'image
+            tolerance: "pointer",
+            size: 100,
+            update : function(e,ui){
+                //var data_to_send = $('#fs').sortable("toArray");
+                console.log(ui.item.index());
+                console.log($(this).sortable('toArray'));
+            }
+        }).disableSelection();
+
+        $("#_valider").click(function () {
+            var data_to_send = $('#fs').sortable('toArray')
+            alert(data_to_send);
+            $.ajax({
+                url: "{{ path('m2m_valider_film') }}",
+                type: 'POST', // Le type de la requête HTTP, ici passé en POST
+                data: {data:data_to_send}, // envoie de la liste des id pour obtenir l'ordre des images
+                dataType: 'html',
+                success: function (code_html, statut) { // code_html contient le HTML renvoyé
+                    $('#movie').html();
+                    $('#movie').html(code_html);
+                }
+
+            });
+        });
+
+
+
+
+            //----------------------------------------------------A MODIFIER-----------------------------------------------------------
+            {#//obtenir le score#}
+            {#$(document).ready(function () {#}
+                {#$(".fs").fsortable({#}
+                    {#connectWith: ".fs",#}
+                    {#tolerance: "pointer",#}
+                    {#size: 5#}
+                {#}).disableSelection();#}
+
+                {#$("#_submit").click(function () {#}
+                    {#var data_to_send = $('.fs').fsortable("serialize");#}
+                    {#$.ajax({#}
+                        {#url: "{{ path('m2m_valider_film') }}",#}
+                        {#type: 'POST', // Le type de la requête HTTP, ici passé en POST#}
+                        {#data: {ordre:data_to_send}, // On fait passer nos variables, exactement comme en GET, au script add.php#}
+                        {#dataType: 'html',#}
+                        {#success: function (code_html, statut) { // code_html contient le HTML renvoyé#}
+                            {#$('#movie').html();#}
+                            {#$('#movie').html(code_html);#}
+                        {#}#}
+
+                    {#});#}
+                {#});#}
+
+    {#});#}
+
+    //    update: function()
+    //    {
+    //        var data_to_send = $('.fs').fsortable("serialize");
+    //        $.ajax
+    //        ({
+    //            type : 'POST',
+    //            dataType: "html",
+    //            url: "jeu.html.twig",
+    //            data: data_to_send
+    //        });
+    //    }
+    //----------------------------------------------------A MODIFIER-----------------------------------------------------------
+</script>
+
+
+<script src="{{ asset('bundles/thagm2m/assets/bootstrap/js/bootstrap.min.js') }}"></script>
+
+</html>
+

@@ -108,7 +108,7 @@
                 </div>
                 {%  if is_granted("IS_AUTHENTICATED_REMEMBERED")  %}
                     <div class="top-buttons">
-                        <a class="btn btn-link-1 scroll-link" href="#pricing">Lancer une partie <i class="fa fa-angle-right"></i></a>
+                        <a class="btn btn-warning" href="/jeu">Lancer une partie <i class="fa fa-angle-right"></i></a>
                         <a class="btn btn-link-2 scroll-link" href="#features">Voir les meilleur Cinéphiles ! <i class="fa fa-lightbulb-o"></i></a>
                     </div>
                 {% endif %}
@@ -671,6 +671,7 @@
 
 
 
+
 {#<div id="drop">#}
 
 
@@ -683,39 +684,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
 
 
-{#<script type="text/javascript">#}
 
-    {#$('.drag1').draggable({#}
-        {#axis : 'x'    // le bloc ayant pour classe la valeur "drag1" ne pourra être déplacé qu'au niveau horizontal#}
-    {#});#}
-
-    {#$('.drag2').draggable({#}
-        {#axis : 'y'    // le bloc ayant pour classe la valeur "drag2" ne pourra être déplacé qu'au niveau vertical#}
-    {#});#}
-
-    {#$('.drag').draggable({#}
-        {#cusor : 'move',#}
-        {#containment: '#limitation',#}
-        {#snap: '.ui-droppable', // chaque élément ayant la classe "draggable" exercera une attraction#}
-        {#revert : 'invalid' // sera renvoyé à sa place s'il n'est pas déposé dans #drop#}
-    {#});#}
-
-    {#$('#valid').draggable({#}
-        {#revert : 'valid' // sera renvoyé à sa place s'il est déposé dans #drop#}
-    {#});#}
-
-    {#$('#invalid').draggable({#}
-
-        {#containment : '#limitation' //ne pourra pas sortir du block contenant limitation comme id#}
-    {#});#}
-
-    {#$('#drop').droppable({#}
-        {#drop : function(){#}
-            {#alert('Action terminée !');#}
-        {#}#}
-    {#});#}
-
-{#</script>#}
 <!-- Javascript -->
 <script src="{{ asset('bundles/thagm2m/assets/js/jquery-1.11.1.min.js') }}"></script>
 <script src="{{ asset('bundles/thagm2m/assets/bootstrap/js/bootstrap.min.js') }}"></script>

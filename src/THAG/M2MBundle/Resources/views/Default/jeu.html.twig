@@ -1,64 +1,97 @@
-
 <!DOCTYPE html>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
 <html lang="fr">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <head>
-        <title>Demo fsortable</title>
-        <link rel="stylesheet" href="{{ asset('bundles/thagm2m/jquery-fsortable/demo/demo.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/thagm2m/assets/bootstrap/css/bootstrap.min.css') }}">
-    </head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <title>Movie2Move</title>
 
-    <body>
-    <div class="limitation">
-        <div class="fs border row">
-            <div class="" ></div>
-            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image1.jpg') }}" alt="Image 1" title="Image 1" />
-            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image2.jpg') }}" alt="Image 1" title="Image 2" />
-            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image3.jpg') }}" alt="Image 1" title="Image 3" />
-            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image4.jpg') }}" alt="Image 1" title="Image 4" />
-            <img class="item .img-responsive column"   src="{{ asset('bundles/thagm2m/img/image5.jpg') }}" alt="Image 1" title="Image 5" />
-        </div>
-    </div>
+    <link rel="stylesheet" href="{{ asset('bundles/thagm2m/jquery-fsortable/demo/demo.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/thagm2m/assets/bootstrap/css/bootstrap.min.css') }}">
+</head>
+
+<body>
+
+<div id="movie" class="form-group" >
+    <input class=" col-md-2" type="text" id="_text" name="_text" placeholder="Entrez le nom du film avec le quel vous souhaitez jouer "/>
+    <br><br><br><br><br><br><br>
+    <input class="btn btn-warning col-md-2" type="submit" id="_submit" name="_submit" value="Tester mes connaissances sur ce film ! :D" />
+</div>
 
 
+{#{{ list }}liste#}
+</body>
+<!-- Javascript -->
 
-    </body>
-    <script src="{{ asset('bundles/thagm2m/assets/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('bundles/thagm2m/jquery-fsortable/resources/jquery-1.10.2.min.js') }}"></script>
-    <script src="{{ asset('bundles/thagm2m/jquery-fsortable/resources/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('bundles/thagm2m/jquery-fsortable/src/jquery-fsortable.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $(".fs").fsortable({
-                connectWith: ".fs",
-                tolerance: "pointer",
-                size: 5,
-                update: function()
-                {
-                    var data_to_send = $('.fs').fsortable("serialize");
-                    $.ajax
-                    ({
-                        type: "GET",
-                        dataType: "JSON",
-                        url: "jeu.html.twig",
-                        data: data_to_send
-                    });
+<script src="{{ asset('bundles/thagm2m/assets/js/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ asset('bundles/thagm2m/assets/js/jquery.backstretch.min.js') }}"></script>
+<script src="{{ asset('bundles/thagm2m/assets/js/wow.min.js') }}"></script>
+<script src="{{ asset('bundles/thagm2m/assets/js/retina-1.1.0.min.js') }}"></script>
+<script src="{{ asset('bundles/thagm2m/assets/js/scripts.js') }}"></script>
+<script src="{{ asset('bundles/thagm2m/assets/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/thagm2m/jquery-fsortable/resources/jquery-1.10.2.min.js') }}"></script>
+<script src="{{ asset('bundles/thagm2m/jquery-fsortable/resources/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('bundles/thagm2m/jquery-fsortable/src/jquery-fsortable.js') }}"></script>
+<script>
+
+
+    //----------------------------------------------------A MODIFIER-----------------------------------------------------------
+    //obtenir le score
+
+
+
+    $('#_text').autocomplete({
+        source : function(requete, reponse){
+            var motcle = $('#_text').val();
+            $.ajax({
+                type:"POST",
+                url : "{{ path('m2m_autocompletion') }}",
+                dataType : 'json',
+                data :{motcle:motcle},
+                success : function(donnee){
+                    console.log(donnee);
+                    reponse($.map(donnee, function(objet){
+                        return objet;
+                    }));
                 }
-            }).disableSelection();
+            });
+        }
+    });
 
-            $("#content .item").draggable({
-                connectToSortable: ".fs:not(.full)",
-                revert: "invalid",
-                helper: "clone",
-                containment : '.limitation'
+
+    $(document).ready(function() {
+        $(".fs").fsortable({
+            connectWith: ".fs",
+            tolerance: "pointer",
+            size: 100
+        }).disableSelection();
+
+        $("#_submit").click(function(){
+
+            var titre = $("#_text").val();
+
+            $.ajax({
+                url : "{{ path('m2m_jouer_film') }}" ,
+                type : 'POST', // Le type de la requête HTTP, ici passé en POST
+                data : {film:titre}, // On fait passer nos variables, exactement comme en GET, au script add.php
+                dataType : 'html',
+                success : function(code_html, statut){ // code_html contient le HTML renvoyé
+                    $('#movie').html();
+                    $('#movie').html(code_html);
+                }
+
             });
         });
 
 
-    </script>
+    });
+
+
+
+    //----------------------------------------------------A MODIFIER-----------------------------------------------------------
+</script>
+
 </html>
 

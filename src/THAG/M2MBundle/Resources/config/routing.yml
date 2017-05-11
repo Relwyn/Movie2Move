@@ -5,3 +5,23 @@ thagm2m_homepage:
 m2m_jeu:
   path: /jeu
   defaults: { _controller: THAGM2MBundle:Default:play }
+
+m2m_add:
+  path: /add
+  defaults: { _controller: THAGM2MBundle:Default:add }
+
+m2m_add_film:
+  path: /save
+  defaults: { _controller: THAGM2MBundle:Default:addfilm }
+
+m2m_jouer_film:
+  path: /affiche
+  defaults: { _controller: THAGM2MBundle:Default:jouerfilm }
+
+m2m_valider_film:
+  path: /valider
+  defaults: { _controller: THAGM2MBundle:Default:valider }
+
+m2m_autocompletion:
+    pattern: /autocompletion
+    defaults: { _controller: THAGM2MBundle:Default:autocompletion}
